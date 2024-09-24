@@ -82,7 +82,10 @@ function PackingList({ items, onDeleteItems, onToggleItems, OnClearlist }) {
   
 let sortedItems;
 if(sortby === "input") sortedItems = items;
-if(sortby === "description") sortedItems = items.slice().sort((a,b) => a.description.localCompare(b.description));
+if (sortby === "description") {
+  sortedItems = items.slice().sort((a, b) => a.description.localeCompare(b.description));
+}
+
 if (sortby === "packed") sortedItems= items.slice().sort((a, b)=> Number(a.packed) - Number(b.packed));
 
   return (
@@ -99,7 +102,8 @@ if (sortby === "packed") sortedItems= items.slice().sort((a, b)=> Number(a.packe
 <select value={sortby} onChange={(e) => setsoryby(e.target.value)}>
   <option value="input">Sort by Input order</option>
   <option value="description">Sort by description</option>
-  <option value="Packed">Sort by packed satatus </option>
+  <option value="packed">Sort by packed status</option>
+
 </select>
 <button onClick={OnClearlist}>Clear list</button>
       </div>
